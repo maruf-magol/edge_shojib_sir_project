@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content2 %}
+    <h3>Home page</h3>
+    <a href="{% url 'about' %}">AboutG</a>
+    <form method="post" action="{% url 'about' %}">
+        {% csrf_token %}
+        <input type="number" name="name_input" required>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'posts' %}">Posts</a>
+
+{% endblock content2 %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock title%}
