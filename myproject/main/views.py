@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from .models import User
 
 # Create your views here.
 def home(request):
@@ -7,9 +8,12 @@ def home(request):
 
 def about(request):
     if request.method == 'POST':
-        temp = int(request.POST.get('name_input'))
+        new_name = request.POST.get('name_input')
+        new_roll = request.POST.get('roll_input')
+        new_user = User(name=new_name,roll=new_roll)
+        new_user.save()
         contexts = {
-            "NAME": [i+1 for i in range(temp)],
+            "new_user": new_user,
         }
         return render(request,"about.html",contexts)
     else:
@@ -17,9 +21,13 @@ def about(request):
         return render(request,"about.html")
 
 def contact(request):
-    
-    return render(request,"contact.html")
+    all_user = User.objects.all()
+    contexts = {
+        "all_user":all_user
+    }
+    return render(request,"contact.html",context=contexts)
 
 def posts(request):
-    
-    return render(request,"posts.html")
+    context = {
+    }
+    return render(request,"posts.html",context=context)
