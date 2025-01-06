@@ -5,11 +5,16 @@
     <a href="{% url 'about' %}">AboutG</a>
     <form method="post" action="{% url 'about' %}">
         {% csrf_token %}
-        <input type="number" name="name_input" required>
+        <input type="text" name="name_input" placeholder="Name" required>
+        <input type="number" name="roll_input" placeholder="Roll" required>
         <button type="submit">Submit</button>
     </form>
     <a href="{% url 'contact' %}">Contact</a>
-    <a href="{% url 'posts' %}">Posts</a>
+    
+
+    <br><br><br><br><br>
+    <a href="{% url 'posts' 0 10 %}">Post0</a>
+    <a href="{% url 'posts' 1 20 %}">Post1</a>
 
 {% endblock content2 %}
 
